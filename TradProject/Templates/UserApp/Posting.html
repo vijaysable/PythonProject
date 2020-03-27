@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <style>
+    header {
+    font-size:28px;
+    text-align: center;
+    }
+        body {
+        background-color: grey;
+        color:white;
+        font-size:21px;
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ post.author }}</h1>
+        <h2>Posts</h2>
+    </header>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="comment">Enter your text:</label><br>
+        <textarea id="comment" rows="4" cols="50" name="comment"></textarea><br>
+        <input type="submit" value="Submit"><br><br>
+        </form>
+    {% for pos in post %}
+        <div>
+          <h2>{{ pos.username }}</h2>
+          <p>{{ pos.text }}</p>
+          <p>{{ pos.date_posted|date:"F d, Y" }}</p>
+        </div>
+{% endfor %}
+
+</body>
+</html>
